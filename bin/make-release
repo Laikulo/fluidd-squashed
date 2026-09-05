@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+UPSTREAM_PROJ=fluidd-core/fluidd
+REPO_DIR="$(dirname "$0")/.."
+read -r PROJ_VERSION < "$REPO_DIR/upstream-ref"
+
+upstream_release_json="$(gh release view -R "$UPSTREAM_PROJ" "$PROJ_VERSION" --json targetCommitish,body)"
+
+upstream_commitish="$(jq <<<"$upstream_release_json" .targetCommitish -r)"
+upstream_body="$(jq <<<"$upstream_release_json" .body -r)"
+
+my_body_text="fluidd: $PROJ_VERSION - upstream commit $upstream_commitish"$'\n---\n'"$upstream_body"
+
+
+git tag -af $PROJ_VERSION -F <(echo "$my_body_text")
+git push -u origin $PROJ_VERSION -f
+
+gh release create "$PROJ_VERSION" -F <(echo "$my_body_text") "$REPO_DIR/fluidd-$PROJ_VERSION"*".sfs" --verify-tag 
