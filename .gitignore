@@ -1,0 +1,6 @@
+# Output artifacts
+/dist.*/
+/src/
+/workspace.container
+/src.timestamp
+/fluidd-*.sfs
