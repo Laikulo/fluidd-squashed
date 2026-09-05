@@ -31,6 +31,8 @@ mount fluidd-VERSION-prefix.sfs /srv/www/fluidd
 ## Prebuild squashes
 Only full releases from upstream will be published here, they will be attached to github releases with the same name as the parent project.
 
-The tags of these releases will point to the tool version that was used to build them, including an upstream-ref.
+The tags of these releases will point to the tool version that was used to build them, including an upstream-ref. This may not be the tooling used to create teh github release itself.
 
-There is currently no offical timeline, but three business days (excluding vacation/holidays) is an aspirational goal.
+## Release Cadence
+
+There is currently no offical timeline, but three business days after the upstream release (excluding vacation/holidays) is an aspirational goal.
