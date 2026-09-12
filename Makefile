@@ -22,7 +22,7 @@ $(OUTPUT_BASE)-%.sfs: dist.%/index.html src.timestamp
 
 
 dist.stock/index.html: FLUIDD_BASE=/
-dist.prefix/index.html: FLUIDD_BASE=/fluidd
+dist.prefix/index.html: FLUIDD_BASE=/fluidd/
 dist.%/index.html: workspace.container src/.git/HEAD src.timestamp
 	[ -d dist.$* ] || mkdir dist.$*
 	$(PODMAN) run --rm \
